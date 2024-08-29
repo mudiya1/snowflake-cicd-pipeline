@@ -15,20 +15,17 @@ conn = snowflake.connector.connect(
 cur = conn.cursor()
 
 try:
-    # Read the SQL file
-    with open('sample.sql', 'r') as file:
-        sql_script = file.read()
+    # Execute the worksheet by its name
+    worksheet_name = 'sample.sql'  # The name of your worksheet
     
-    print(f'Executing SQL script: {sql_script}')  # Print the SQL command
+    # Execute the worksheet (this assumes it's a saved worksheet or named query)
+    cur.execute(f"CALL SYSTEM$EXECUTE_WORKSHEET('{worksheet_name}');")
     
-    # Execute the SQL script
-    cur.execute(sql_script)
-    print('Executed SQL script successfully.')
+    print('Executed worksheet successfully.')
     
 except Exception as e:
-    print(f"Error executing SQL script: {e}")
+    print(f"Error executing worksheet: {e}")
 
 # Close the connection
 cur.close()
 conn.close()
-

@@ -1,5 +1,4 @@
 import snowflake.snowpark as snowpark
-import pandas as pd
 
 # Define your Snowflake credentials directly in the script
 SNOWFLAKE_ACCOUNT = 'jlguadw-lw99714'
@@ -16,7 +15,7 @@ def main(session: snowpark.Session):
     FROM DEMO3DB.DEMO_TS.LATEST_PROCESSED_CALLS
     """
     latest_batch_df = session.sql(latest_batch_query)
-    latest_batch_number = latest_batch_df.to_pandas().iloc[0]['LATEST_BATCH']
+    latest_batch_number = latest_batch_df.collect()[0]['LATEST_BATCH']
 
     # Select data from the latest batch
     latest_batch_data_query = f"""
@@ -26,9 +25,9 @@ def main(session: snowpark.Session):
     """
     df_snowpark = session.sql(latest_batch_data_query)
     
-    # Print the DataFrame or process it as needed
-    print(df_snowpark.to_pandas())
-
+    # Collect data as a list of rows
+    data_rows = df_snowpark.collect()
+    
     # Define the table name where the results will be stored
     result_table_name = "LATEST_BATCH_RESULTS"
 
@@ -39,6 +38,10 @@ def main(session: snowpark.Session):
     WHERE batch_number = {latest_batch_number}
     """
     session.sql(create_table_query).collect()
+
+    # Optional: Print results if needed
+    for row in data_rows:
+        print(row)
 
 if __name__ == "__main__":
     # Create a Snowflake session with hardcoded credentials

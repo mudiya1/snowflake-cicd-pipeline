@@ -28,9 +28,20 @@ def main(session: snowpark.Session):
     # Print the DataFrame or process it as needed
     print(df_snowpark.to_pandas())
 
+    # Define the table name where the results will be stored
+    result_table_name = "LATEST_BATCH_RESULTS"
+
+    # Create or replace the table with the same schema as the source
+    create_table_query = f"""
+    CREATE OR REPLACE TABLE {result_table_name} AS
+    SELECT * FROM DEMO3DB.DEMO_TS.LATEST_PROCESSED_CALLS
+    WHERE batch_number = {latest_batch_number}
+    """
+    session.sql(create_table_query).collect()
+
 if __name__ == "__main__":
     # Create a Snowflake session with hardcoded credentials
-    conn = snowpark.Session.builder.configs({
+    session = snowpark.Session.builder.configs({
         "account": SNOWFLAKE_ACCOUNT,
         "user": SNOWFLAKE_USER,
         "password": SNOWFLAKE_PASSWORD,
@@ -39,5 +50,5 @@ if __name__ == "__main__":
         "schema": SNOWFLAKE_SCHEMA
     }).create()
 
-    main(conn)
-    conn.close()
+    main(session)
+    session.close()

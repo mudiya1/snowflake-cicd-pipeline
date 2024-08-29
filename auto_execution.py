@@ -4,7 +4,7 @@ import snowflake.snowpark as snowpark
 # Connect to Snowflake with hardcoded credentials
 conn = snowflake.connector.connect(
     user='MUDIYA',
-    password='945uU',
+    password='9490798615uU',
     account='jlguadw-lw99714',
     warehouse='MY_WAREHOUSES',
     database='DEMO3DB',
@@ -14,7 +14,7 @@ conn = snowflake.connector.connect(
 # Create a Snowpark session
 session = snowpark.Session.builder.configs({
     'user': 'MUDIYA',
-    'password': '945uU',
+    'password': '9490798615uU',
     'account': 'jlguadw-lw99714',
     'warehouse': 'MY_WAREHOUSES',
     'database': 'DEMO3DB',

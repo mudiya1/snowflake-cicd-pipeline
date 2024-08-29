@@ -1,5 +1,7 @@
 import snowflake.connector
+import os
 
+# Connect to Snowflake
 conn = snowflake.connector.connect(
     user='MUDIYA',         
     password='9490798615uU',
@@ -17,9 +19,11 @@ try:
     cur.execute("SELECT sql_command FROM sql_scripts WHERE script_name = 'sample.sql'")
     sql_script = cur.fetchone()[0]  # Fetch the SQL command
     
+    print(f'Executing SQL script: {sql_script}')  # Print the SQL command
+    
     # Execute the fetched SQL command
     cur.execute(sql_script)
-    print(f'Executed SQL script successfully.')
+    print('Executed SQL script successfully.')
     
 except Exception as e:
     print(f"Error executing SQL script: {e}")
@@ -27,4 +31,5 @@ except Exception as e:
 # Close the connection
 cur.close()
 conn.close()
+
 

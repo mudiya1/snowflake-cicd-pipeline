@@ -1,4 +1,5 @@
 import snowflake.connector
+import os
 
 # Connect to Snowflake
 conn = snowflake.connector.connect(
@@ -14,19 +15,15 @@ conn = snowflake.connector.connect(
 cur = conn.cursor()
 
 try:
-    # Fetch the SQL command from Snowflake table
-    cur.execute("SELECT sql_command FROM sql_scripts WHERE script_name = 'sample.sql'")
-    sql_script = cur.fetchone()
+    # Read the SQL file
+    with open('sample.sql', 'r') as file:
+        sql_script = file.read()
     
-    if sql_script:
-        sql_script = sql_script[0]  # Fetch the SQL command
-        print(f'Executing SQL script: {sql_script}')  # Print the SQL command
-        
-        # Execute the fetched SQL command
-        cur.execute(sql_script)
-        print('Executed SQL script successfully.')
-    else:
-        print("No SQL script found for 'sample.sql'.")
+    print(f'Executing SQL script: {sql_script}')  # Print the SQL command
+    
+    # Execute the SQL script
+    cur.execute(sql_script)
+    print('Executed SQL script successfully.')
     
 except Exception as e:
     print(f"Error executing SQL script: {e}")
@@ -34,3 +31,4 @@ except Exception as e:
 # Close the connection
 cur.close()
 conn.close()
+

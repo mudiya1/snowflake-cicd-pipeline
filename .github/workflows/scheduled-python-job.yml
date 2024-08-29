@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install snowflake-snowpark-python
-          pip install pandas
+          pip install pandas  # Ensure pandas is installed
 
       - name: Run Python Script
         env:

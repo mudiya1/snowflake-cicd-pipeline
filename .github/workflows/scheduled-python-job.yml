@@ -22,10 +22,10 @@ jobs:
 
     - name: Run Python Script
       env:
-        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+        SNOWFLAKE_USER: 'your_username'  # Hardcoded username
+        SNOWFLAKE_PASSWORD: 'your_password'  # Hardcoded password
+        SNOWFLAKE_ACCOUNT: 'your_account'  # Hardcoded account identifier (e.g., 'xy12345')
+        SNOWFLAKE_WAREHOUSE: 'your_warehouse'  # Hardcoded warehouse
+        SNOWFLAKE_DATABASE: 'your_database'  # Hardcoded database
+        SNOWFLAKE_SCHEMA: 'your_schema'  # Hardcoded schema
       run: python auto_execution.py

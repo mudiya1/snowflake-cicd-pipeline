@@ -9,53 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.10'  # Use a compatible Python version
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'  # Use a compatible Python version
 
-    - name: Install Snowflake Connector
-      run: pip install snowflake-connector-python snowflake-snowpark-python
+      - name: Install Snowflake Snowpark
+        run: pip install snowflake-snowpark-python
 
-    - name: Run Snowflake Python Script
-      run: |
-        python -c "
-import snowflake.connector
-import snowflake.snowpark as snowpark
-
-# Connect to Snowflake with hardcoded credentials
-conn = snowflake.connector.connect(
-    user='MUDIYA',
-    password='945uU',
-    account='jlguadw-lw99714',
-    warehouse='MY_WAREHOUSES',
-    database='DEMO3DB',
-    schema='DEMO_TS'
-)
-
-# Create a Snowpark session
-session = snowpark.Session.builder.configs({
-    'user': 'MUDIYA',
-    'password': '945uU',
-    'account': 'jlguadw-lw99714',
-    'warehouse': 'MY_WAREHOUSES',
-    'database': 'DEMO3DB',
-    'schema': 'DEMO_TS'
-}).create()
-
-def execute_script():
-    script_query = 'SELECT sql_command FROM your_script_table WHERE script_name = \'auto_execution.py\''
-
-    # Fetch the Python script from Snowflake
-    script_df = session.sql(script_query).to_pandas()
-    script = script_df.iloc[0]['sql_command']
-    
-    # Execute the fetched Python script
-    exec(script)
-
-# Run the function to execute the script
-execute_script()
-        "
+      - name: Run Python Script
+        env:
+          SNOWFLAKE_USER: 'MUDIYA'
+          SNOWFLAKE_PASSWORD: '949079865uU'
+          SNOWFLAKE_ACCOUNT: 'jlguadw-lw99714'
+          SNOWFLAKE_WAREHOUSE: 'MY_WAREHOUSES'
+          SNOWFLAKE_DATABASE: 'DEMO3DB'
+          SNOWFLAKE_SCHEMA: 'DEMO_TS'
+        run: python auto_execution.py

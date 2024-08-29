@@ -39,10 +39,6 @@ def main(session: snowpark.Session):
     """
     session.sql(create_table_query).collect()
 
-    # Optional: Print results if needed
-    for row in data_rows:
-        print(row)
-
 if __name__ == "__main__":
     # Create a Snowflake session with hardcoded credentials
     session = snowpark.Session.builder.configs({

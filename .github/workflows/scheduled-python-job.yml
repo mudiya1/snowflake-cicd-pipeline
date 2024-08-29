@@ -9,23 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v3
-      with:
-        python-version: '3.x'
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'  # Use a compatible Python version
 
-    - name: Install Snowflake Snowpark
-      run: pip install snowflake-snowpark-python
+      - name: Install Snowflake Snowpark
+        run: pip install snowflake-snowpark-python
 
-    - name: Run Python Script
-      env:
-        SNOWFLAKE_USER: 'MUDIYA'  
-        SNOWFLAKE_PASSWORD: '9490798615uU'
-        SNOWFLAKE_ACCOUNT: 'jlguadw-lw99714'
-        SNOWFLAKE_WAREHOUSE: 'MY_WAREHOUSES'
-        SNOWFLAKE_DATABASE: 'DEMO3DB'
-        SNOWFLAKE_SCHEMA: 'DEMO_TS'
-      run: python auto_execution.py
+      - name: Run Python Script
+        env:
+          SNOWFLAKE_USER: 'MUDIYA'
+          SNOWFLAKE_PASSWORD: '95uU'
+          SNOWFLAKE_ACCOUNT: 'jlguadw-lw99714'
+          SNOWFLAKE_WAREHOUSE: 'MY_WAREHOUSES'
+          SNOWFLAKE_DATABASE: 'DEMO3DB'
+          SNOWFLAKE_SCHEMA: 'DEMO_TS'
+        run: python auto_execution.py

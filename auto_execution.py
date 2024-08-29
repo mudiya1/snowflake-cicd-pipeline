@@ -1,4 +1,5 @@
 import snowflake.snowpark as snowpark
+import pandas as pd
 
 # Define your Snowflake credentials directly in the script
 SNOWFLAKE_ACCOUNT = 'jlguadw-lw99714'

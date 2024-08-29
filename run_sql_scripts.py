@@ -3,7 +3,7 @@ import snowflake.connector
 conn = snowflake.connector.connect(
     user='MUDIYA',         
     password='9490798615uU',
-    account='jlguadw-lw99714.snowflakecomputing.com',
+    account='jlguadw-lw99714',
     warehouse='MY_WAREHOUSES',
     database='DEMO3DB',
     schema='DEMO_TS'

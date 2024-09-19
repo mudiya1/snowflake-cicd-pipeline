@@ -1,12 +1,12 @@
 import snowflake.snowpark as snowpark
 
 # Define your Snowflake credentials directly in the script
-SNOWFLAKE_ACCOUNT = 'jlguadw-lw99714'
-SNOWFLAKE_USER = 'MUDIYA'
+SNOWFLAKE_ACCOUNT = 'jlg9714'
+SNOWFLAKE_USER = 'MUYA'
 SNOWFLAKE_PASSWORD = '94uU'
-SNOWFLAKE_WAREHOUSE = 'MY_WAREHOUSES'
-SNOWFLAKE_DATABASE = 'DEMO3DB'
-SNOWFLAKE_SCHEMA = 'DEMO_TS'
+SNOWFLAKE_WAREHOUSE = 'MUSES'
+SNOWFLAKE_DATABASE = 'DEDB'
+SNOWFLAKE_SCHEMA = 'DS'
 
 def main(session: snowpark.Session):
     # Find the latest batch number

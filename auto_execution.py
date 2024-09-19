@@ -3,7 +3,7 @@ import snowflake.snowpark as snowpark
 # Define your Snowflake credentials directly in the script
 SNOWFLAKE_ACCOUNT = 'jlguadw-lw99714'
 SNOWFLAKE_USER = 'MUDIYA'
-SNOWFLAKE_PASSWORD = '9490798615uU'
+SNOWFLAKE_PASSWORD = '94uU'
 SNOWFLAKE_WAREHOUSE = 'MY_WAREHOUSES'
 SNOWFLAKE_DATABASE = 'DEMO3DB'
 SNOWFLAKE_SCHEMA = 'DEMO_TS'
